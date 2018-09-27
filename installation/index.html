@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Installing and Running - Freightstore</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Installing and Running";
+    var mkdocs_page_input_path = "installation.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Freightstore</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Installing and Running</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#software-requirements">Software Requirements</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#installing-dependencies">Installing Dependencies</a></li>
+        
+            <li><a class="toctree-l3" href="#running-the-project">Running the Project</a></li>
+        
+            <li><a class="toctree-l3" href="#running-simple-test-with-sample-data">Running simple test with sample data</a></li>
+        
+            <li><a class="toctree-l3" href="#logging">Logging</a></li>
+        
+            <li><a class="toctree-l3" href="#running-django-unit-tests">Running django unit tests</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../api/">API Documentation</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Freightstore</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Installing and Running</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="software-requirements">Software Requirements</h2>
+<ul>
+<li><a href="https://www.python.org/">python 3.5+</a></li>
+<li><a href="https://www.djangoproject.com/download/">Django 2.0+</a></li>
+<li><a href="http://www.django-rest-framework.org/#installation">Django Rest Framework 3.8+</a></li>
+<li><a href="https://coverage.readthedocs.io/en/coverage-4.5.1a/install.html">Coverage.py 4.3+</a></li>
+</ul>
+<p>Although it is not necessary, it is highly recommended to use  <a href="https://virtualenvwrapper.readthedocs.io/en/latest/">virtualenvwrapper</a>, since it isolates the project's environment, allowing the development of many different projects' versions with different dependencies' versions.</p>
+<h3 id="installing-dependencies">Installing Dependencies</h3>
+<pre><code class="bash"># After navigating to the project freightstore/src directory, install virtualenvwrapper
+$ pip install virtualenvwrapper
+# Additional steps (only for Linux users)
+$ export WORKON_HOME=~/Envs
+$ mkdir -p $WORKON_HOME
+$ source /usr/local/bin/virtualenvwrapper.sh
+# Create isolated enviroment (using &quot;freightenv&quot; as the name for the environment)
+$ mkvirtualenv freightenv
+# Use the freightenv environment created
+$ workon freightenv
+# Install the requirements
+$ pip install -r requirements.txt
+</code></pre>
+
+<h3 id="running-the-project">Running the Project</h3>
+<pre><code class="bash"># Use the freightenv environment
+$ workon freightenv
+# Execute migrations
+$ python manage.py migrate
+# After navigating to the project freightstore/src directory, start the server
+$ python manage.py runserver
+
+</code></pre>
+
+<h3 id="running-simple-test-with-sample-data">Running simple test with sample data</h3>
+<p>It's possible to execute a test with the /api/v1/shortest-path/ endpoint by running the following steps:</p>
+<pre><code class="bash"># Use the freightenv environment
+$ workon freightenv
+# After navigating to the project freightstore/src directory, execute migrations
+$ python manage.py migrate
+# Load the sample data
+$ python manage.py loaddata sample_data.json
+# Start the server
+$ python manage.py runserver
+</code></pre>
+
+<p>After these commands, just access the following URL using a web browser.</p>
+<pre><code>http://localhost:8000/api/v1/shortest-path/?map_name=Sao%20Paulo&amp;origin_point=A&amp;destination_point=D&amp;fuel_litter_price=2.50&amp;fuel_consumption=10
+</code></pre>
+
+<p>Expected result:</p>
+<pre><code>{
+    &quot;shortest_path&quot;: &quot;['A', 'B', 'D']&quot;,
+    &quot;freight_rate&quot;: &quot;6.25&quot;
+}
+</code></pre>
+
+<h3 id="logging">Logging</h3>
+<p>Freightstore uses python built-in logging library to trace and analyze incoming requests. By default, the log is disabled. To enable information logging, the application expects a configuration file (logging.conf) and the "logs" folder in the same directory as manage.py.
+There is a configuration file example (logging.conf_file) available in the project. Just rename this file to logging.conf, create the logs directory, restart the web server (python manage.py runserver), and a file will be created in the logs folder. The information level in this log depends on the configuration set in logging.conf.</p>
+<h3 id="running-django-unit-tests">Running django unit tests</h3>
+<pre><code class="bash"># After navigating to the project freightstore/src directory, execute tests
+$ coverage run --source ./ ./manage.py test -v 2
+</code></pre>
+
+<ul>
+<li>The command above uses coverage.py library to analyze how much code the tests executed can cover. If the tests were executed with no errors, then the command shell should show the following messages in the last lines shown in the terminal (the time period may have a different value on a different machine, and number of tests - "nn" in the following lines - may change depending on the application's version):</li>
+</ul>
+<pre><code class="bash">Ran nn tests in 0.455s
+
+OK
+Destroying test database for alias 'default'
+</code></pre>
+
+<ul>
+<li>To analyse how much these tests cover each python script from this project, execute the following command:</li>
+</ul>
+<pre><code class="bash"># Show each python script of the project and how much code is covered with the tests
+$ coverage report
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../api/" class="btn btn-neutral float-right" title="API Documentation">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../api/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

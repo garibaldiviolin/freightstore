@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>API Documentation - Freightstore</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "API Documentation";
+    var mkdocs_page_input_path = "api.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Freightstore</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../installation/">Installing and Running</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">API Documentation</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#maps-endpoint">Maps endpoint</a></li>
+    
+
+    <li class="toctree-l2"><a href="#map-routes-endpoint">Map Routes endpoint</a></li>
+    
+
+    <li class="toctree-l2"><a href="#shortest-path-endpoint">Shortest Path endpoint</a></li>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Freightstore</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>API Documentation</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="maps-endpoint">Maps endpoint</h1>
+<p>URL that allows the creation the map resources</p>
+<ul>
+<li>URL: <code>/api/v1/maps/</code></li>
+<li>HTTP Method(s) Accepted: <code>POST</code></li>
+<li>Format: <code>JSON</code></li>
+</ul>
+<p><strong>Body Params</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Yes</td>
+<td>The map's name</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Status Codes</strong></p>
+<ul>
+<li>HTTP Status Code</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Status Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Success</td>
+<td>201 (Created)</td>
+</tr>
+<tr>
+<td>Error</td>
+<td>400 (Bad Request)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Request example:</strong></p>
+<pre><code>{
+    &quot;name&quot;: &quot;California&quot;
+}
+</code></pre>
+
+<p><strong>Response example:</strong></p>
+<ul>
+<li>HTTP Status Code: <code>201 (Created)</code></li>
+<li>The same JSON body data of the request (above)</li>
+</ul>
+<h1 id="map-routes-endpoint">Map Routes endpoint</h1>
+<p>URL that receives and creates all of the map routes (with the origin and destination point) from the client. The client must have already sent (register) a map_name in the endpoint above before sending the map-routes. This endpoint only accepts the HTTP POST method (resouce creation).</p>
+<ul>
+<li>URL: <code>/api/v1/maps-routes/</code></li>
+<li>HTTP Method(s) Accepted: <code>POST</code></li>
+<li>Format: <code>JSON</code></li>
+</ul>
+<p><strong>Body Params</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>freight_map</td>
+<td>string</td>
+<td>Yes</td>
+<td>It's the same information sent in the maps endpoint (map_name).</td>
+</tr>
+<tr>
+<td>origin_point</td>
+<td>string</td>
+<td>Yes</td>
+<td>The point name where the route starts.</td>
+</tr>
+<tr>
+<td>destination_point</td>
+<td>string</td>
+<td>Yes</td>
+<td>The point name where the route ends. It must be different from the origin_point field.</td>
+</tr>
+<tr>
+<td>distance</td>
+<td>float</td>
+<td>Yes</td>
+<td>The distance between origin and destination points (in kilometers)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Status Codes</strong></p>
+<ul>
+<li>HTTP Status Code</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Status Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Success</td>
+<td>201 (Created)</td>
+</tr>
+<tr>
+<td>Error</td>
+<td>400 (Bad Request)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Error Messages</strong></p>
+<table>
+<thead>
+<tr>
+<th>Message</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Distance must be greater than zero.</td>
+<td>Distance field was sent with a value equal or less than zero.</td>
+</tr>
+<tr>
+<td>Origin must be different from destination point.'</td>
+<td>origin_point and destination_point was sent with the same value.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Request example:</strong></p>
+<p>HTTP Status Code: <code>201 (Created)</code></p>
+<pre><code>{
+    &quot;freight_map&quot;: &quot;California&quot;,
+    &quot;origin_point&quot;: &quot;X&quot;,
+    &quot;destination_point&quot;: &quot;Y&quot;,
+    &quot;distance&quot;: 81232.594
+}
+</code></pre>
+
+<p><strong>Response example:</strong></p>
+<pre><code>{
+    &quot;freight_map&quot;: &quot;California&quot;,
+    &quot;origin_point&quot;: &quot;X&quot;,
+    &quot;destination_point&quot;: &quot;Y&quot;,
+    &quot;distance&quot;: &quot;81232.594&quot;
+}
+</code></pre>
+
+<h1 id="shortest-path-endpoint">Shortest Path endpoint</h1>
+<p>URL that responds the shortest path and freight cost based on the map name, origin and destination points, fuel litter price and vehicle's fuel consumption, given in the URL.</p>
+<ul>
+<li>URL: <code>/api/v1/shortest-path/</code></li>
+<li>HTTP Method(s) Accepted: <code>GET</code></li>
+<li>Format: <code>JSON</code></li>
+</ul>
+<p><strong>URL Request Params</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>map_name</td>
+<td>string</td>
+<td>Yes</td>
+<td>The same information sent in the /api/v1/maps/ endpoint (map_name).</td>
+</tr>
+<tr>
+<td>origin_point</td>
+<td>string</td>
+<td>Yes</td>
+<td>The freight's starting point. It must be one of the points given in the /api/v1/map-routes/ endpoint.</td>
+</tr>
+<tr>
+<td>destination_point</td>
+<td>string</td>
+<td>Yes</td>
+<td>The same information sent in the /api/v1/maps/ endpoint (map_name).</td>
+</tr>
+<tr>
+<td>fuel_litter_price</td>
+<td>float</td>
+<td>Yes</td>
+<td>The fuel litter price must be a integer or decimal number.</td>
+</tr>
+<tr>
+<td>fuel_consumption</td>
+<td>float</td>
+<td>Yes</td>
+<td>The freight vehicle's fuel consumption (in kilometers per fuel litter). It must be a integer or decimal number.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Body Response Format</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>shortest_path</td>
+<td>string</td>
+<td>Yes</td>
+<td>The map points sequence (routes) that represents the shortest path between the origin and the destination point given in the request</td>
+</tr>
+<tr>
+<td>freight_rate</td>
+<td>string</td>
+<td>Yes</td>
+<td>The freight's calculated price</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Status Codes</strong></p>
+<ul>
+<li>HTTP Status Code</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Status Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Success</td>
+<td>200 (OK)</td>
+</tr>
+<tr>
+<td>Error</td>
+<td>400 (Bad Request)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Error Messages</strong></p>
+<table>
+<thead>
+<tr>
+<th>Message</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>map_name parameter must be supplied</td>
+<td>The map_name URL parameter was not informed.</td>
+</tr>
+<tr>
+<td>origin_point parameter must be supplied</td>
+<td>The origin_point URL parameter was not informed.</td>
+</tr>
+<tr>
+<td>destination_point parameter must be supplied</td>
+<td>The destination_point URL parameter was not informed.</td>
+</tr>
+<tr>
+<td>origin_point must be different from destination_point.</td>
+<td>The origin_point and destination point informed in the URL are the same.</td>
+</tr>
+<tr>
+<td>fuel_litter_price parameter must be supplied</td>
+<td>The fuel_litter_price URL parameter was not informed.</td>
+</tr>
+<tr>
+<td>fuel_litter_price must be numeric.</td>
+<td>The fuel_litter_price was informed with an invalid format.</td>
+</tr>
+<tr>
+<td>fuel_consumption parameter must be supplied</td>
+<td>The fuel_consumption URL parameter was not informed.</td>
+</tr>
+<tr>
+<td>fuel_consumption must be numeric.</td>
+<td>The fuel_consumption was informed with an invalid format.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>URL Request example:</strong></p>
+<pre><code>/api/v1/shortest-path/?map_name=California&amp;origin_point=B&amp;destination_point=Y&amp;fuel_litter_price=2.985&amp;fuel_consumption=11.912
+</code></pre>
+
+<p><strong>Response example:</strong></p>
+<p>HTTP Status Code: <code>200 (OK)</code></p>
+<pre><code>{
+    &quot;shortest_path&quot;: &quot;['H', 'A', 'P']&quot;,
+    &quot;freight_rate&quot;: &quot;982.13&quot;
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../installation/" class="btn btn-neutral" title="Installing and Running"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../installation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
